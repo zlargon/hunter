@@ -12,7 +12,7 @@ const togglePlayPause = () => {
   }
 }
 
-btn.onclick = togglePlayPause;
+// btn.onclick = togglePlayPause;
 
 video.addEventListener('timeupdate', () => {
   const juicePos = video.currentTime / video.duration;
