@@ -117,3 +117,20 @@
 #choice-bar .option:hover > .effect {
   background-image: radial-gradient(white, black);
 }
+
+/* Loading Bar */
+#choice-bar .loading-bar {
+  position: absolute;
+  height: 4px;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: black;
+
+  display: flex;
+  justify-content: center;
+}
+#choice-bar .loading-bar > div {
+  height: 100%;
+  background-color: white;
+}

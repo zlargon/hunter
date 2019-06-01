@@ -35,6 +35,11 @@ const createDecisionBox = ({
 
   // choiceBar
   const choiceBar = document.getElementById('choice-bar');
+  choiceBar.innerHTML = `
+    <div class="loading-bar">
+      <div></div>
+    </div>
+  `;
 
   // <div class="option">
   //   <div>option 1</div>
@@ -55,15 +60,42 @@ const createDecisionBox = ({
     choiceBar.appendChild(option);
   }
 
+  const loadingBar = document.querySelector('#choice-bar .loading-bar > div');
+  const interval = 50;
+  let timeId = null;
+  let progress;
+
+  const startCountdown = () => {
+    progress = 0;
+    timeId = setInterval(() => {
+      progress += interval;
+      loadingBar.style.width = (progress / (decisionTime * 1000)) * 100 + '%';
+
+      if (progress > decisionTime * 1000) {
+        loadingBar.style.width = '100%';
+        clearInterval(timeId);
+      }
+    }, interval);
+
+    return timeId;
+  }
+
+  const stopCountdown = () => {
+    clearInterval(timeId);
+    timeId = null;
+  }
+
   // show and hide
   let isShow = false;
   const show = () => {
     isShow = true;
     choiceBar.style.transform = 'translateY(0)';
+    startCountdown();
   }
   const hide = () => {
     isShow = false;
     choiceBar.style.transform = 'translateY(100%)';
+    stopCountdown();
   }
 
   return {
