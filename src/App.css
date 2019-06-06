@@ -13,6 +13,10 @@
   overflow: hidden;
 }
 
+.app-video-section > video {
+  width: 100%;
+}
+
 /* Choice Bar */
 .decision-box {
   display: flex;
