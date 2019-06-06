@@ -24,8 +24,13 @@ const App = () => {
       return dispatch(['DECISION_START']);
     }
 
-    // 13 ~ 15s
-    if (stage === 2 && vid.currentTime >= startTime + 13) {
+    // 3 ~ 8s (TODO: move to click event)
+    if (stage === 2 && vid.currentTime >= startTime + 8) {
+      return dispatch(['DECISION_SELECTED']);
+    }
+
+    // 10 ~ 15s
+    if (stage === 3 && vid.currentTime >= startTime + 13) {
       return dispatch(['DECISION_PREPARE_END']);
     }
 
@@ -43,7 +48,7 @@ const App = () => {
 
         {/* decision box */}
         <div className="decision-box" style={{ transform: `translateY(${state.showDecisionBox ? 0 : '100%'})` }}>
-          { (stage === 2 || stage === 3) && <LoadingBar/> }
+          { (stage === 2 || stage === 3) && <LoadingBar color={ stage === 3 ? 'grey' : 'white' }/> }
           {
             state.options.map((opt, i) => <Option key={i}>{ opt.value }</Option>)
           }
