@@ -25,10 +25,22 @@ const App = () => {
 
         {/* decision box */}
         <div className="decision-box">
-          <div className="option">option 1</div>
-          <div className="option">option 2</div>
-          <div className="option">option 3</div>
-          <div className="option">option 4</div>
+          <div className="option">
+            <div>option 1</div>
+            <div className="underline effect"></div>
+          </div>
+          <div className="option">
+            <div>option 2</div>
+            <div className="underline effect"></div>
+          </div>
+          <div className="option">
+            <div>option 3</div>
+            <div className="underline effect"></div>
+          </div>
+          <div className="option">
+            <div>option 4</div>
+            <div className="underline effect"></div>
+          </div>
         </div>
       </div>
     </div>
