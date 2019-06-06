@@ -1,6 +1,7 @@
 import React from 'react';
 
-const Option = ({visiable = true, children}) => {
+const Option = (props) => {
+  const { visiable = true } = props;
 
   let classes = 'option';
   if (visiable) {
@@ -8,8 +9,8 @@ const Option = ({visiable = true, children}) => {
   }
 
   return (
-    <div className={classes}>
-      <div>{ children }</div>
+    <div className={classes} {...props}>
+      <div>{ props.children }</div>
       <div className="underline effect"></div>
     </div>
   );

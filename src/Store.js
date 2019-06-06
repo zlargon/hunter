@@ -33,17 +33,23 @@ const reducer = (state, action) => {
         stage: 2
       }
 
-    case 'DECISION_SELECTED':
-        return {
-          ...state,
-          stage: 3
-        }
+    case 'DECISION_SELECTED': {
+      const { index, option } = payload;
+
+      console.log('select option:', index);
+      console.log(option);
+
+      return {
+        ...state,
+        stage: 3
+      }
+    }
 
     case 'DECISION_PREPARE_END':
-        return {
-          ...state,
-          stage: 4
-        }
+      return {
+        ...state,
+        stage: 4
+      }
 
     case 'DECISION_END': {
       return {

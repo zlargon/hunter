@@ -25,11 +25,11 @@ const App = () => {
     }
 
     // 3 ~ 8s (TODO: move to click event)
-    if (stage === 2 && vid.currentTime >= startTime + 8) {
-      return dispatch(['DECISION_SELECTED']);
-    }
+    // if (stage === 2 && vid.currentTime >= startTime + 8) {
+    //   return dispatch(['DECISION_SELECTED']);
+    // }
 
-    // 10 ~ 15s
+    // 13 ~ 15s
     if (stage === 3 && vid.currentTime >= startTime + 13) {
       return dispatch(['DECISION_PREPARE_END']);
     }
@@ -38,6 +38,10 @@ const App = () => {
     if (stage === 4 && vid.currentTime >= startTime + 15) {
       return dispatch(['DECISION_END']);
     }
+  }
+
+  const optionOnClick = (index, option) => {
+    dispatch(['DECISION_SELECTED', { index, option }]);
   }
 
   return (
@@ -50,7 +54,13 @@ const App = () => {
         <div className="decision-box" style={{ transform: `translateY(${state.showDecisionBox ? 0 : '100%'})` }}>
           { (stage === 2 || stage === 3) && <LoadingBar color={ stage === 3 ? 'grey' : 'white' }/> }
           {
-            state.options.map((opt, i) => <Option key={i}>{ opt.value }</Option>)
+            state.options.map((opt, i) => {
+              return (
+                <Option key={i} onClick={() => optionOnClick(i, opt)}>
+                  { opt.value }
+                </Option>
+              );
+            })
           }
         </div>
       </div>
