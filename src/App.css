@@ -24,7 +24,8 @@
   bottom: 0;
   width: 100%;
   flex-wrap: wrap;
-  background: rgba(0, 0, 0, 0.8);
+  background-color: black;
+  /* background: rgba(0, 0, 0, 0.8); */
   /* transform: translateY(0); */
   transition: all 0.2s;
   justify-content: space-evenly;
@@ -44,9 +45,13 @@
   text-transform: uppercase;
 }
 
+/* visible */
+.decision-box > .visible {
+  visibility: visible;
+}
+
 /* selectable */
 .decision-box > .selectable {
-  visibility: visible;
   color: grey;
   cursor: pointer;
 }

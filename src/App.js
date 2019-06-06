@@ -7,7 +7,7 @@ import LoadingBar from './LoadingBar';
 
 const App = () => {
   const [state, dispatch] = React.useContext(StoreContext);
-  const { stage } = state;
+  const { stage, selectedOption } = state;
 
   const videoHandler = ({ target: vid }) => {
     console.log(vid.currentTime.toFixed(2));
@@ -30,7 +30,7 @@ const App = () => {
     // }
 
     // 13 ~ 15s
-    if (stage === 3 && vid.currentTime >= startTime + 13) {
+    if ((stage === 2 || stage === 3) && vid.currentTime >= startTime + 13) {
       return dispatch(['DECISION_PREPARE_END']);
     }
 
@@ -40,8 +40,9 @@ const App = () => {
     }
   }
 
-  const optionOnClick = (index, option) => {
-    dispatch(['DECISION_SELECTED', { index, option }]);
+  const optionOnClick = (index) => {
+    console.log();
+    dispatch(['DECISION_SELECTED', index]);
   }
 
   return (
@@ -55,8 +56,15 @@ const App = () => {
           { (stage === 2 || stage === 3) && <LoadingBar color={ stage === 3 ? 'grey' : 'white' }/> }
           {
             state.options.map((opt, i) => {
+              let visible = 0;
+              if (stage === 2 || (stage >= 3 && i === selectedOption)) {
+                visible = 1;
+              }
+
               return (
-                <Option key={i} onClick={() => optionOnClick(i, opt)}>
+                <Option key={i}
+                  visible={visible}
+                  onClick={() => optionOnClick(i)}>
                   { opt.value }
                 </Option>
               );

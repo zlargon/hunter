@@ -6,6 +6,7 @@ export const StoreContext = createContext({});
 const initialState = {
   stage: 0,
   showDecisionBox: false,
+  selectedOption: 0,
   options: [
     { next: '001', value: 'option 1' },
     { next: '002', value: 'option 2' },
@@ -33,17 +34,12 @@ const reducer = (state, action) => {
         stage: 2
       }
 
-    case 'DECISION_SELECTED': {
-      const { index, option } = payload;
-
-      console.log('select option:', index);
-      console.log(option);
-
+    case 'DECISION_SELECTED':
       return {
         ...state,
-        stage: 3
+        stage: 3,
+        selectedOption: payload
       }
-    }
 
     case 'DECISION_PREPARE_END':
       return {

@@ -1,15 +1,14 @@
 import React from 'react';
 
 const Option = (props) => {
-  const { visiable = true } = props;
+  const { visible = 1, selectable = 1 } = props;
 
-  let classes = 'option';
-  if (visiable) {
-    classes += ' selectable';
-  }
+  const classes = ['option'];
+  if (visible) classes.push('visible');
+  if (selectable) classes.push('selectable');
 
   return (
-    <div className={classes} {...props}>
+    <div className={classes.join(' ')} {...props}>
       <div>{ props.children }</div>
       <div className="underline effect"></div>
     </div>
