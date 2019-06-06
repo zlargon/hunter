@@ -37,6 +37,7 @@
 
 /* OPTION */
 .decision-box > .option {
+  color: white;
   visibility: hidden;
 
   /* config */
@@ -58,7 +59,7 @@
 .decision-box > .selectable:hover {
   color: white;
 }
-.decision-box > .selectable > .underline {
+.decision-box .underline {
   height: 2px;
   margin-top: 3px;
 }

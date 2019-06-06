@@ -61,9 +61,12 @@ const App = () => {
                 visible = 1;
               }
 
+              const selectable = (stage === 3 || stage === 4) ? 0 : 1;
+
               return (
                 <Option key={i}
                   visible={visible}
+                  selectable={selectable}
                   onClick={() => optionOnClick(i)}>
                   { opt.value }
                 </Option>
