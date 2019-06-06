@@ -12,18 +12,22 @@ const App = () => {
 
     const startTime = 5;
 
+    // 0 ~ 3s
     if (state.stage === 0 && vid.currentTime >= startTime) {
       return dispatch(['DECISION_PREPARE']);
     }
 
+    // 3 ~ 13s
     if (state.stage === 1 && vid.currentTime >= startTime + 3) {
       return dispatch(['DECISION_START']);
     }
 
+    // 13 ~ 15s
     if (state.stage === 2 && vid.currentTime >= startTime + 13) {
       return dispatch(['DECISION_PREPARE_END']);
     }
 
+    // after 15s
     if (state.stage === 4 && vid.currentTime >= startTime + 15) {
       return dispatch(['DECISION_END']);
     }
@@ -40,10 +44,9 @@ const App = () => {
 
         {/* decision box */}
         <div className="decision-box" style={{ transform: `translateY(${state.showDecisionBox ? 0 : '100%'})` }}>
-          <Option>option 1</Option>
-          <Option>option 2</Option>
-          <Option>option 3</Option>
-          <Option>option 4</Option>
+          {
+            state.options.map((opt, i) => <Option key={i}>{ opt.value }</Option>)
+          }
         </div>
       </div>
     </div>

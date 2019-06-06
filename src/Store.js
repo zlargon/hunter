@@ -5,7 +5,13 @@ export const StoreContext = createContext({});
 
 const initialState = {
   stage: 0,
-  showDecisionBox: false
+  showDecisionBox: false,
+  options: [
+    { next: '001', value: 'option 1' },
+    { next: '002', value: 'option 2' },
+    { next: '003', value: 'option 3' },
+    { next: '004', value: 'option 4' }
+  ]
 };
 
 // Reducer
