@@ -3,15 +3,14 @@ import movie from './video.mp4';
 import './App.css';
 
 const App = () => {
+  const [boxIsShow, showBox] = React.useState(false);
 
   const videoHandler = ({ target: vid }) => {
     console.dir(vid);
     console.log('currentTime:', vid.currentTime);
     console.log('duration:', vid.duration);
 
-    if (vid.currentTime >= 10) {
-      vid.currentTime = 0;
-    }
+    showBox(5 <= vid.currentTime && vid.currentTime <= 10);
   }
 
   return (
@@ -24,7 +23,7 @@ const App = () => {
         </video>
 
         {/* decision box */}
-        <div className="decision-box">
+        <div className="decision-box" style={{ transform: `translateY(${boxIsShow ? 0 : '100%'})` }}>
           <div className="option">
             <div>option 1</div>
             <div className="underline effect"></div>
