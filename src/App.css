@@ -15,9 +15,39 @@
 
 .app-video-section > video {
   width: 100%;
+  margin-bottom: -4px;
 }
 
-/* Choice Bar */
+/* Control Bar */
+.control-section {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 80px;
+}
+.control-section .controls {
+  height: 50px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  transform: translateY(100%);
+  transition: all 0.2s;
+  background-color: black;
+
+  /* flex */
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+}
+.control-section .controls i {
+  color: white;
+  cursor: pointer;
+}
+.control-section:hover .controls {
+  transform: translateY(0);
+}
+
+/* Decision Box */
 .decision-box {
   display: flex;
   position: absolute;

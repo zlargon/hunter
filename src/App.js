@@ -12,7 +12,7 @@ const App = () => {
   const videoHandler = ({ target: vid }) => {
     console.log(vid.currentTime.toFixed(2));
 
-    const startTime = 0;
+    const startTime = 15;
 
     // 0 ~ 3s
     if (stage === 0 && vid.currentTime >= startTime) {
@@ -50,6 +50,13 @@ const App = () => {
       <div className="app-video-section">
         {/* video */}
         <video src={movie} onTimeUpdate={videoHandler} controls></video>
+
+        {/* control bar */}
+        <div className="control-section">
+          <div className="controls">
+            <i className="fas fa-play play-pause"></i>
+          </div>
+        </div>
 
         {/* decision box */}
         <div className="decision-box" style={{ transform: `translateY(${state.showDecisionBox ? 0 : '100%'})` }}>
