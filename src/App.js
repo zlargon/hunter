@@ -1,28 +1,31 @@
 import React from 'react';
 import movie from './video.mp4';
 import './App.css';
+import { StoreContext } from './Store';
 
 const App = () => {
-  const [boxIsShow, showBox] = React.useState(false);
-  const [optionIsSelectable, setSelectableOption] = React.useState(true);
+  const [state, dispatch] = React.useContext(StoreContext);
 
   const videoHandler = ({ target: vid }) => {
-    console.dir(vid);
-    console.log('currentTime:', vid.currentTime);
-    console.log('duration:', vid.duration);
+    console.log(vid.currentTime.toFixed(2));
 
     const startTime = 5;
-    const prepare  = 3;
-    const choosing = 10;
-    const result   = 2;
 
-    const range = (start, end) => {
-      return start <= vid.currentTime && vid.currentTime <= end;
+    if (state.stage === 0 && vid.currentTime >= startTime) {
+      return dispatch(['DECISION_PREPARE']);
     }
 
-    showBox(range(5 + 3, 5 + 15));
+    if (state.stage === 1 && vid.currentTime >= startTime + 3) {
+      return dispatch(['DECISION_START']);
+    }
 
-    setSelectableOption(range(5 + 3, 5 + 10));
+    if (state.stage === 2 && vid.currentTime >= startTime + 13) {
+      return dispatch(['DECISION_PREPARE_END']);
+    }
+
+    if (state.stage === 4 && vid.currentTime >= startTime + 15) {
+      return dispatch(['DECISION_END']);
+    }
   }
 
   return (
@@ -35,12 +38,12 @@ const App = () => {
         </video>
 
         {/* decision box */}
-        <div className="decision-box" style={{ transform: `translateY(${boxIsShow ? 0 : '100%'})` }}>
-          <div className={optionIsSelectable ? "option selectable" : "option"}>
+        <div className="decision-box" style={{ transform: `translateY(${state.showDecisionBox ? 0 : '100%'})` }}>
+          <div className="option selectable">
             <div>option 1</div>
             <div className="underline effect"></div>
           </div>
-          <div className={optionIsSelectable ? "option selectable" : "option"}>
+          <div className="option selectable">
             <div>option 2</div>
             <div className="underline effect"></div>
           </div>
@@ -48,7 +51,7 @@ const App = () => {
             <div>option 3</div>
             <div className="underline effect"></div>
           </div>
-          <div className={optionIsSelectable ? "option selectable" : "option"}>
+          <div className="option selectable">
             <div>option 4</div>
             <div className="underline effect"></div>
           </div>
