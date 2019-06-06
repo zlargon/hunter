@@ -22,6 +22,14 @@ const App = () => {
           onTimeUpdate={videoHandler}
           controls>
         </video>
+
+        {/* decision box */}
+        <div className="decision-box">
+          <div className="option">option 1</div>
+          <div className="option">option 2</div>
+          <div className="option">option 3</div>
+          <div className="option">option 4</div>
+        </div>
       </div>
     </div>
   );
