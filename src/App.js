@@ -2,6 +2,7 @@ import React from 'react';
 import movie from './video.mp4';
 import './App.css';
 import { StoreContext } from './Store';
+import Option from './Option';
 
 const App = () => {
   const [state, dispatch] = React.useContext(StoreContext);
@@ -39,22 +40,10 @@ const App = () => {
 
         {/* decision box */}
         <div className="decision-box" style={{ transform: `translateY(${state.showDecisionBox ? 0 : '100%'})` }}>
-          <div className="option selectable">
-            <div>option 1</div>
-            <div className="underline effect"></div>
-          </div>
-          <div className="option selectable">
-            <div>option 2</div>
-            <div className="underline effect"></div>
-          </div>
-          <div className="option">
-            <div>option 3</div>
-            <div className="underline effect"></div>
-          </div>
-          <div className="option selectable">
-            <div>option 4</div>
-            <div className="underline effect"></div>
-          </div>
+          <Option>option 1</Option>
+          <Option>option 2</Option>
+          <Option>option 3</Option>
+          <Option>option 4</Option>
         </div>
       </div>
     </div>
