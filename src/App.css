@@ -39,9 +39,11 @@
   align-items: center;
   padding: 0 20px;
 }
-.control-section .controls i {
+.control-section .controls > div {
   color: white;
   cursor: pointer;
+  padding: 5px 8px;
+  border: 1px solid white;
 }
 .control-section:hover .controls {
   transform: translateY(0);

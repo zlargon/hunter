@@ -6,8 +6,10 @@ import Option from './Option';
 import LoadingBar from './LoadingBar';
 
 const App = () => {
+  const videoRef = React.createRef();
   const [state, dispatch] = React.useContext(StoreContext);
   const { stage, selectedOption } = state;
+  const [videoPlay, setVideoPlay] = React.useState(false);
 
   const videoHandler = ({ target: vid }) => {
     console.log(vid.currentTime.toFixed(2));
@@ -40,21 +42,29 @@ const App = () => {
     }
   }
 
-  const optionOnClick = (index) => {
-    console.log();
-    dispatch(['DECISION_SELECTED', index]);
+  const togglePlayPause = () => {
+    const vid = videoRef.current;
+    if (vid.paused) {
+      vid.play();
+    } else {
+      vid.pause();
+    }
+    setVideoPlay(!vid.paused);
+    console.dir(vid);
   }
 
   return (
     <div className="container">
       <div className="app-video-section">
         {/* video */}
-        <video src={movie} onTimeUpdate={videoHandler} controls></video>
+        <video ref={videoRef} src={movie} onTimeUpdate={videoHandler} controls></video>
 
         {/* control bar */}
         <div className="control-section">
           <div className="controls">
-            <i className="fas fa-play play-pause"></i>
+            <div onClick={togglePlayPause}>
+              <i className={`fas fa-${videoPlay ? 'pause' : 'play'}`}></i>
+            </div>
           </div>
         </div>
 
@@ -74,7 +84,7 @@ const App = () => {
                 <Option key={i}
                   visible={visible}
                   selectable={selectable}
-                  onClick={() => optionOnClick(i)}>
+                  onClick={() => dispatch(['DECISION_SELECTED', i])}>
                   { opt.value }
                 </Option>
               );
