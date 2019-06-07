@@ -53,17 +53,44 @@ const App = () => {
     console.dir(vid);
   }
 
+  const foward = (sec) => {
+    const vid = videoRef.current;
+    vid.currentTime += sec;
+  }
+
+  const fullScreen = () => {
+    const vid = videoRef.current;
+    if (vid.requestFullscreen) {
+      vid.requestFullscreen();
+    } else if (vid.msRequestFullscreen) {
+      vid.msRequestFullscreen();
+    } else if (vid.mozRequestFullScreen) {
+      vid.mozRequestFullScreen();
+    } else if (vid.webkitRequestFullscreen) {
+      vid.webkitRequestFullscreen();
+    }
+  }
+
   return (
     <div className="container">
       <div className="app-video-section">
         {/* video */}
-        <video ref={videoRef} src={movie} onTimeUpdate={videoHandler} controls></video>
+        <video ref={videoRef} src={movie} onTimeUpdate={videoHandler}></video>
 
         {/* control bar */}
         <div className="control-section">
           <div className="controls">
             <div onClick={togglePlayPause}>
               <i className={`fas fa-${videoPlay ? 'pause' : 'play'}`}></i>
+            </div>
+            <div onClick={() => foward(-10)}>
+              <i className="fas fa-undo-alt"></i>
+            </div>
+            <div onClick={() => foward(10)}>
+              <i className="fas fa-redo-alt"></i>
+            </div>
+            <div onClick={fullScreen}>
+              <i className="fas fa-expand"></i>
             </div>
           </div>
         </div>
