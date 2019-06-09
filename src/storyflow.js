@@ -4,13 +4,13 @@ const StoryFlow = {
     "description": ""
   },
 
-  // 0 ~ 20
+  // 0 ~ 30
   "001": {
     "start_time": 0,
-    "end_time": 20,
+    "end_time": 30,
     "options": [
-      { "next": "001", "value": "goto 0" },
       { "next": "002", "value": "goto 30" },
+      { "next": "001", "value": "goto 0" },
     ]
   },
 
@@ -19,24 +19,27 @@ const StoryFlow = {
     "start_time": 30,
     "end_time": 60,
     "options": [
-      { "next": "001", "value": "goto 0" },
       { "next": "003", "value": "goto 60" },
+      { "next": "002", "value": "goto 30" },
+      { "next": "001", "value": "goto 0" },
     ]
   },
 
-  // 60 ~ 80
+  // 60 ~ 90
   "003": {
     "start_time": 60,
-    "end_time": 80,
+    "end_time": 90,
     "options": [
+      { "next": "004", "value": "goto 90" },
+      { "next": "003", "value": "goto 60" },
+      { "next": "002", "value": "goto 30" },
       { "next": "001", "value": "goto 0" },
-      { "next": "004", "value": "goto 100" },
     ]
   },
 
-  // 100 ~
+  // 90 ~
   "004": {
-    "start_time": 100,
+    "start_time": 90,
     "end_time": null
   }
 };
