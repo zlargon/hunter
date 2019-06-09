@@ -9,7 +9,6 @@ const App = () => {
   const videoRef = React.createRef();
   const [state, dispatch] = React.useContext(StoreContext);
   const { stage, selectedOption } = state;
-  const [videoPlay, setVideoPlay] = React.useState(false);
 
   // fullscreen event
   const containerRef = React.createRef();
@@ -51,6 +50,8 @@ const App = () => {
     }
   }
 
+  // Play Pause Toggle
+  const [videoPlay, setVideoPlay] = React.useState(false);
   const togglePlayPause = () => {
     const vid = videoRef.current;
     if (vid.paused) {
@@ -58,8 +59,6 @@ const App = () => {
     } else {
       vid.pause();
     }
-    setVideoPlay(!vid.paused);
-    console.dir(vid);
   }
 
   const foward = (sec) => {
@@ -79,7 +78,11 @@ const App = () => {
     <div ref={containerRef} className="container" >
       <div className="app-video-section">
         {/* video */}
-        <video ref={videoRef} src={movie} onTimeUpdate={videoHandler}></video>
+        <video ref={videoRef} src={movie}
+          onTimeUpdate={videoHandler}
+          onPlay={() => setVideoPlay(true)}
+          onPause={() => setVideoPlay(false)}>
+        </video>
 
         {/* control bar */}
         <div className="control-section">
