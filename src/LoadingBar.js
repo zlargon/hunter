@@ -2,11 +2,11 @@ import React from 'react';
 
 // progress = 0 ~ 1
 const LoadingBar = ({ color = 'white' }) => {
-  const interval = 50;          // 50ms
-  const duration = 10 * 1000;   // 10sec
   const [progress, setProgress] = React.useState(0);
 
   React.useEffect(() => {
+    const interval = 50;          // 50ms
+    const duration = 10 * 1000;   // 10sec
     let passtime = 0;
     const id = setInterval(() => {
       passtime += interval;
