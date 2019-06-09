@@ -1,6 +1,7 @@
 {
-  "name": "hunter-react-app",
+  "name": "hunter",
   "version": "0.1.0",
+  "homepage": "http://zlargon.github.io/hunter",
   "private": true,
   "dependencies": {
     "react": "^16.8.6",
@@ -11,7 +12,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "yarn build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
