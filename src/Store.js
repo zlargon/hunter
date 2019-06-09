@@ -6,6 +6,7 @@ export const StoreContext = createContext({});
 
 const initialState = {
   stage: 0,
+  allowControls: true,
   showDecisionBox: false,
   selectedOption: 0,
   currentSource: StoryFlow['001'],
@@ -22,13 +23,14 @@ const reducer = (state, action) => {
       return {
         ...state,
         stage: 1,
-        showDecisionBox: true
+        allowControls: false
       }
 
     case 'DECISION_START':
       return {
         ...state,
-        stage: 2
+        stage: 2,
+        showDecisionBox: true
       }
 
     case 'DECISION_SELECTED':
@@ -55,6 +57,7 @@ const reducer = (state, action) => {
         ...state,
         stage: 0,
         selectedOption: 0,
+        allowControls: true,
         showDecisionBox: false,
         currentSource: state.nextSource,
         nextSource: {}

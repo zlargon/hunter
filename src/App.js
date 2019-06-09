@@ -54,7 +54,6 @@ const App = () => {
     }
 
     const startTime = currentSource.end_time - 15;
-    console.log('startTime', startTime);
 
     // 0 ~ 3s
     if (stage === 0 && vid.currentTime >= startTime) {
@@ -99,7 +98,7 @@ const App = () => {
 
         {/* control bar */}
         <div className="control-section">
-          <div className="controls">
+          <div className={`controls ${state.allowControls ? 'allow' : ''}`}>
             <div onClick={togglePlayPause}>
               { isVideoPlay ?
                 <i className="fas fa-pause"></i> :
@@ -126,11 +125,7 @@ const App = () => {
           { (stage === 2 || stage === 3) && <LoadingBar color={ stage === 3 ? 'grey' : 'white' }/> }
           {
             currentSource.options && currentSource.options.map((opt, i) => {
-              let visible = 0;
-              if (stage === 2 || (stage >= 3 && i === selectedOption)) {
-                visible = 1;
-              }
-
+              const visible    = (stage === 2 || (stage >= 3 && i === selectedOption)) ? 1 : 0;
               const selectable = (stage === 3 || stage === 4) ? 0 : 1;
 
               return (

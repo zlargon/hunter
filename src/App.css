@@ -37,7 +37,7 @@
   position: absolute;
   bottom: 0;
   width: 100%;
-  transform: translateY(100%);
+  transform: translateY(100%);  /* hide */
   transition: all 0.2s;
   background-color: black;
 
@@ -52,8 +52,8 @@
   padding: 5px 8px;
   border: 1px solid white;
 }
-.control-section:hover .controls {
-  transform: translateY(0);
+.control-section:hover .controls.allow {
+  transform: translateY(0);   /* show */
 }
 
 /* Decision Box */
@@ -71,7 +71,7 @@
   align-items: center;
 
   /* config */
-  height: 120px;
+  height: 20%;
 }
 
 /* OPTION */
