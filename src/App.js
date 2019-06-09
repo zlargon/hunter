@@ -2,6 +2,7 @@ import React from 'react';
 import { StoreContext } from './Store';
 import Option from './Option';
 import LoadingBar from './LoadingBar';
+import mov from './videos/video.mp4';
 
 const App = () => {
   // 1. state and dispatch
@@ -90,7 +91,7 @@ const App = () => {
     <div ref={containerRef} className="container" >
       <div className="app-video-section">
         {/* video */}
-        <video ref={videoRef} src="/videos/video.mp4"
+        <video ref={videoRef} src={mov}
           onTimeUpdate={videoHandler}
           onPlay={() => setVideoPlay(true)}
           onPause={() => setVideoPlay(false)}>
