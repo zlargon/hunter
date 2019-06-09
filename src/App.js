@@ -78,7 +78,11 @@ const App = () => {
 
     // after 15s
     if (stage === 4 && vid.currentTime >= startTime + 15) {
-      vid.currentTime = nextSource.start_time;
+      // don't jump if the timeline is very closed
+      if (Math.abs(vid.currentTime - nextSource.start_time) > 2) {
+        vid.currentTime = nextSource.start_time;
+      }
+
       return dispatch(['DECISION_END']);
     }
   }
