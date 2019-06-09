@@ -11,7 +11,7 @@ const App = () => {
 
   // 2. video state and refs
   const videoRef = React.createRef();
-  const containerRef = React.createRef();
+  const videoContainerRef = React.createRef();
   const [isVideoPlay, setVideoPlay] = React.useState(false);
   const [isFullscreen, setFullscreen] = React.useState(document.fullscreen);
   React.useEffect(() => {
@@ -40,9 +40,11 @@ const App = () => {
   // 3-3. fullscreen toggle
   const fullscreenToggle = () => {
     if (document.fullscreen) {
-      document.exitFullscreen();                // close fullscreen
+      // close fullscreen
+      document.exitFullscreen();
     } else {
-      containerRef.current.requestFullscreen(); // open fullscreen
+      // open fullscreen
+      videoContainerRef.current.requestFullscreen();
     }
   }
 
@@ -88,8 +90,8 @@ const App = () => {
   }
 
   return (
-    <div ref={containerRef} className="container" >
-      <div className="app-video-section">
+    <div className="container" >
+      <div ref={videoContainerRef} className="app-video-section">
         {/* video */}
         <video ref={videoRef} src={mov}
           onTimeUpdate={videoHandler}
