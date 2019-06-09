@@ -6,12 +6,12 @@ import LoadingBar from './LoadingBar';
 const App = () => {
   // 1. state and dispatch
   const [state, dispatch] = React.useContext(StoreContext);
-  const { stage, selectedOption } = state;
+  const { stage, selectedOption, currentSource } = state;
 
   // 2. video state and refs
   const videoRef = React.createRef();
   const containerRef = React.createRef();
-  const [videoPlay, setVideoPlay] = React.useState(false);
+  const [isVideoPlay, setVideoPlay] = React.useState(false);
   const [isFullscreen, setFullscreen] = React.useState(document.fullscreen);
   React.useEffect(() => {
     document.addEventListener('fullscreenchange', (e) => {
@@ -49,7 +49,7 @@ const App = () => {
   const videoHandler = ({ target: vid }) => {
     console.log(vid.currentTime.toFixed(2));
 
-    const startTime = 15;
+    const startTime = 0;
 
     // 0 ~ 3s
     if (stage === 0 && vid.currentTime >= startTime) {
@@ -91,7 +91,7 @@ const App = () => {
         <div className="control-section">
           <div className="controls">
             <div onClick={togglePlayPause}>
-              { videoPlay ?
+              { isVideoPlay ?
                 <i className="fas fa-pause"></i> :
                 <i className="fas fa-play"></i>
               }
@@ -115,7 +115,7 @@ const App = () => {
         <div className="decision-box" style={{ transform: `translateY(${state.showDecisionBox ? 0 : '100%'})` }}>
           { (stage === 2 || stage === 3) && <LoadingBar color={ stage === 3 ? 'grey' : 'white' }/> }
           {
-            state.options.map((opt, i) => {
+            currentSource.options.map((opt, i) => {
               let visible = 0;
               if (stage === 2 || (stage >= 3 && i === selectedOption)) {
                 visible = 1;

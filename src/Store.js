@@ -1,4 +1,5 @@
 import React, { createContext, useReducer } from 'react';
+import StoryFlow from './storyflow.js';
 
 // StoreContext
 export const StoreContext = createContext({});
@@ -7,12 +8,8 @@ const initialState = {
   stage: 0,
   showDecisionBox: false,
   selectedOption: 0,
-  options: [
-    { next: '001', value: 'option 1' },
-    { next: '002', value: 'option 2' },
-    { next: '003', value: 'option 3' },
-    { next: '004', value: 'option 4' }
-  ]
+  currentSource: StoryFlow['001'],
+  nextSource: {}
 };
 
 // Reducer
@@ -34,12 +31,19 @@ const reducer = (state, action) => {
         stage: 2
       }
 
-    case 'DECISION_SELECTED':
+    case 'DECISION_SELECTED': {
+      const optIndex = payload;
+      const option = state.currentSource.options[optIndex];
+      const nextSource = StoryFlow[option.next];
+      console.log(option, nextSource);
+
       return {
         ...state,
         stage: 3,
-        selectedOption: payload
+        selectedOption: optIndex,
+        nextSource
       }
+    }
 
     case 'DECISION_PREPARE_END':
       return {
