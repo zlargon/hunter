@@ -6,7 +6,7 @@ import LoadingBar from './LoadingBar';
 const App = () => {
   // 1. state and dispatch
   const [state, dispatch] = React.useContext(StoreContext);
-  const { stage, selectedOption, currentSource } = state;
+  const { stage, selectedOption, currentSource, nextSource } = state;
 
   // 2. video state and refs
   const videoRef = React.createRef();
@@ -49,7 +49,12 @@ const App = () => {
   const videoHandler = ({ target: vid }) => {
     console.log(vid.currentTime.toFixed(2));
 
-    const startTime = 0;
+    if (currentSource.end_time === null) {
+      return;
+    }
+
+    const startTime = currentSource.end_time - 15;
+    console.log('startTime', startTime);
 
     // 0 ~ 3s
     if (stage === 0 && vid.currentTime >= startTime) {
@@ -73,6 +78,7 @@ const App = () => {
 
     // after 15s
     if (stage === 4 && vid.currentTime >= startTime + 15) {
+      vid.currentTime = nextSource.start_time;
       return dispatch(['DECISION_END']);
     }
   }
@@ -115,7 +121,7 @@ const App = () => {
         <div className="decision-box" style={{ transform: `translateY(${state.showDecisionBox ? 0 : '100%'})` }}>
           { (stage === 2 || stage === 3) && <LoadingBar color={ stage === 3 ? 'grey' : 'white' }/> }
           {
-            currentSource.options.map((opt, i) => {
+            currentSource.options && currentSource.options.map((opt, i) => {
               let visible = 0;
               if (stage === 2 || (stage >= 3 && i === selectedOption)) {
                 visible = 1;

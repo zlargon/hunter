@@ -31,31 +31,33 @@ const reducer = (state, action) => {
         stage: 2
       }
 
-    case 'DECISION_SELECTED': {
-      const optIndex = payload;
-      const option = state.currentSource.options[optIndex];
-      const nextSource = StoryFlow[option.next];
-      console.log(option, nextSource);
-
+    case 'DECISION_SELECTED':
       return {
         ...state,
         stage: 3,
-        selectedOption: optIndex,
+        selectedOption: payload
+      }
+
+    case 'DECISION_PREPARE_END': {
+      const optionIndex = state.selectedOption;
+      const option = state.currentSource.options[optionIndex];
+      const nextSource = StoryFlow[option.next];
+
+      return {
+        ...state,
+        stage: 4,
         nextSource
       }
     }
 
-    case 'DECISION_PREPARE_END':
-      return {
-        ...state,
-        stage: 4
-      }
-
     case 'DECISION_END': {
       return {
         ...state,
-        stage: 5,
-        showDecisionBox: false
+        stage: 0,
+        selectedOption: 0,
+        showDecisionBox: false,
+        currentSource: state.nextSource,
+        nextSource: {}
       }
     }
 

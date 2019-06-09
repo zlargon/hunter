@@ -10,7 +10,7 @@ const StoryFlow = {
     "end_time": 20,
     "options": [
       { "next": "001", "value": "goto 0" },
-      { "next": "004", "value": "goto 100" },
+      { "next": "002", "value": "goto 30" },
     ]
   },
 
