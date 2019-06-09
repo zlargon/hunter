@@ -4,12 +4,14 @@ import Option from './Option';
 import LoadingBar from './LoadingBar';
 
 const App = () => {
-  const videoRef = React.createRef();
+  // 1. state and dispatch
   const [state, dispatch] = React.useContext(StoreContext);
   const { stage, selectedOption } = state;
 
-  // fullscreen event
+  // 2. video state and refs
+  const videoRef = React.createRef();
   const containerRef = React.createRef();
+  const [videoPlay, setVideoPlay] = React.useState(false);
   const [isFullscreen, setFullscreen] = React.useState(document.fullscreen);
   React.useEffect(() => {
     document.addEventListener('fullscreenchange', (e) => {
@@ -17,6 +19,33 @@ const App = () => {
     });
   }, []);
 
+  // 3. video functions
+  // 3-1. Play / Pause Toggle
+  const togglePlayPause = () => {
+    const vid = videoRef.current;
+    if (vid.paused) {
+      vid.play();
+    } else {
+      vid.pause();
+    }
+  }
+
+  // 3-2. forward / backward
+  const foward = (sec) => {
+    const vid = videoRef.current;
+    vid.currentTime += sec;
+  }
+
+  // 3-3. fullscreen toggle
+  const fullscreenToggle = () => {
+    if (document.fullscreen) {
+      document.exitFullscreen();                // close fullscreen
+    } else {
+      containerRef.current.requestFullscreen(); // open fullscreen
+    }
+  }
+
+  // 4. Video Timeupdate Handler
   const videoHandler = ({ target: vid }) => {
     console.log(vid.currentTime.toFixed(2));
 
@@ -48,30 +77,6 @@ const App = () => {
     }
   }
 
-  // Play Pause Toggle
-  const [videoPlay, setVideoPlay] = React.useState(false);
-  const togglePlayPause = () => {
-    const vid = videoRef.current;
-    if (vid.paused) {
-      vid.play();
-    } else {
-      vid.pause();
-    }
-  }
-
-  const foward = (sec) => {
-    const vid = videoRef.current;
-    vid.currentTime += sec;
-  }
-
-  const fullscreenToggle = () => {
-    if (document.fullscreen) {
-      document.exitFullscreen();                // close fullscreen
-    } else {
-      containerRef.current.requestFullscreen(); // open fullscreen
-    }
-  }
-
   return (
     <div ref={containerRef} className="container" >
       <div className="app-video-section">
@@ -86,7 +91,10 @@ const App = () => {
         <div className="control-section">
           <div className="controls">
             <div onClick={togglePlayPause}>
-              <i className={`fas fa-${videoPlay ? 'pause' : 'play'}`}></i>
+              { videoPlay ?
+                <i className="fas fa-pause"></i> :
+                <i className="fas fa-play"></i>
+              }
             </div>
             <div onClick={() => foward(-10)}>
               <i className="fas fa-undo-alt"></i>
