@@ -1,6 +1,4 @@
 import React from 'react';
-import movie from './video.mp4';
-import './App.css';
 import { StoreContext } from './Store';
 import Option from './Option';
 import LoadingBar from './LoadingBar';
@@ -78,7 +76,7 @@ const App = () => {
     <div ref={containerRef} className="container" >
       <div className="app-video-section">
         {/* video */}
-        <video ref={videoRef} src={movie}
+        <video ref={videoRef} src="/videos/video.mp4"
           onTimeUpdate={videoHandler}
           onPlay={() => setVideoPlay(true)}
           onPause={() => setVideoPlay(false)}>
