@@ -96,7 +96,8 @@ const App = () => {
         <video ref={videoRef} src={mov}
           onTimeUpdate={videoHandler}
           onPlay={() => setVideoPlay(true)}
-          onPause={() => setVideoPlay(false)}>
+          onPause={() => setVideoPlay(false)}
+          onEnded={() => dispatch(['DECISION_END'])}>
         </video>
 
         {/* control bar */}
