@@ -11,6 +11,15 @@ const App = () => {
   const { stage, selectedOption } = state;
   const [videoPlay, setVideoPlay] = React.useState(false);
 
+  // fullscreen event
+  const containerRef = React.createRef();
+  const [isFullscreen, setFullscreen] = React.useState(document.fullscreen);
+  React.useEffect(() => {
+    document.addEventListener('fullscreenchange', (e) => {
+      setFullscreen(document.fullscreen);
+    });
+  }, []);
+
   const videoHandler = ({ target: vid }) => {
     console.log(vid.currentTime.toFixed(2));
 
@@ -58,21 +67,16 @@ const App = () => {
     vid.currentTime += sec;
   }
 
-  const fullScreen = () => {
-    const vid = videoRef.current;
-    if (vid.requestFullscreen) {
-      vid.requestFullscreen();
-    } else if (vid.msRequestFullscreen) {
-      vid.msRequestFullscreen();
-    } else if (vid.mozRequestFullScreen) {
-      vid.mozRequestFullScreen();
-    } else if (vid.webkitRequestFullscreen) {
-      vid.webkitRequestFullscreen();
+  const fullscreenToggle = () => {
+    if (document.fullscreen) {
+      document.exitFullscreen();                // close fullscreen
+    } else {
+      containerRef.current.requestFullscreen(); // open fullscreen
     }
   }
 
   return (
-    <div className="container">
+    <div ref={containerRef} className="container" >
       <div className="app-video-section">
         {/* video */}
         <video ref={videoRef} src={movie} onTimeUpdate={videoHandler}></video>
@@ -89,8 +93,11 @@ const App = () => {
             <div onClick={() => foward(10)}>
               <i className="fas fa-redo-alt"></i>
             </div>
-            <div onClick={fullScreen}>
-              <i className="fas fa-expand"></i>
+            <div onClick={fullscreenToggle}>
+              { isFullscreen ?
+                <i className="fas fa-compress"></i> :
+                <i className="fas fa-expand"></i>
+              }
             </div>
           </div>
         </div>

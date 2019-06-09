@@ -1,6 +1,6 @@
 .container {
   display: flex;
-  background: #ccc;
+  background: lightgray;
   justify-content: center;
   align-items: center;
   height: 100vh;
@@ -11,6 +11,13 @@
   max-width: 1000px;
   position: relative;
   overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container:fullscreen > .app-video-section {
+  max-width: none;
 }
 
 .app-video-section > video {
