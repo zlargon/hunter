@@ -89,10 +89,14 @@ const App = () => {
     }
   }
 
-  // controls class
-  let controlsClasses = ['controls'];
+  // controls classes
+  const controlsClasses = ['controls'];
   if (state.allowControls) controlsClasses.push('allow');
   if (!isVideoPlay) controlsClasses.push('show');
+
+  // decision box classes
+  const decisionBoxClasses = ['decision-box'];
+  if (state.showDecisionBox) decisionBoxClasses.push('show');
 
   return (
     <div className="container" >
@@ -130,7 +134,7 @@ const App = () => {
         </div>
 
         {/* decision box */}
-        <div className="decision-box" style={{ transform: `translateY(${state.showDecisionBox ? 0 : '100%'})` }}>
+        <div className={decisionBoxClasses.join(' ')}>
           { (stage === 2 || stage === 3) && <LoadingBar color={ stage === 3 ? 'grey' : 'white' }/> }
           {
             currentSource.options && currentSource.options.map((opt, i) => {
