@@ -55,6 +55,9 @@
 .control-section:hover .controls.allow {
   transform: translateY(0);   /* show */
 }
+.control-section .controls.show {
+  transform: translateY(0);   /* show */
+}
 
 /* Decision Box */
 .decision-box {

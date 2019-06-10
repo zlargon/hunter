@@ -89,6 +89,11 @@ const App = () => {
     }
   }
 
+  // controls class
+  let controlsClasses = ['controls'];
+  if (state.allowControls) controlsClasses.push('allow');
+  if (!isVideoPlay) controlsClasses.push('show');
+
   return (
     <div className="container" >
       <div ref={videoContainerRef} className="app-video-section">
@@ -102,7 +107,7 @@ const App = () => {
 
         {/* control bar */}
         <div className="control-section">
-          <div className={`controls ${state.allowControls ? 'allow' : ''}`}>
+          <div className={controlsClasses.join(' ')}>
             <div onClick={togglePlayPause}>
               { isVideoPlay ?
                 <i className="fas fa-pause"></i> :
