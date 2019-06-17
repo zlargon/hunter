@@ -1,17 +1,28 @@
 import React, { createContext, useReducer } from 'react';
 import StoryFlow from './storyflow.js';
 
+const debugPlot = (plot) => {
+  console.group(plot.name);
+  console.log('start_time:', plot.start_time);
+  console.log('end_time:', plot.end_time);
+  console.log('next:', plot.next);
+  console.log('options:', plot.options);
+  console.groupEnd();
+}
+
 // StoreContext
 export const StoreContext = createContext({});
 
+const begin = StoryFlow();
 const initialState = {
   stage: 0,
   allowControls: true,
   showDecisionBox: false,
   selectedOption: 0,
-  currentSource: StoryFlow(),
-  nextSource: {}
+  currentSource: begin,
+  nextSource: begin.next ? StoryFlow(begin.next) : {}
 };
+debugPlot(begin);
 
 // Reducer
 const reducer = (state, action) => {
@@ -53,6 +64,7 @@ const reducer = (state, action) => {
 
     case 'NEXT_PLOT': {
       const plot = state.nextSource;
+      debugPlot(plot);
 
       return {
         ...state,
