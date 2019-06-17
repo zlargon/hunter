@@ -10,19 +10,25 @@ const debugPlot = (plot) => {
   console.groupEnd();
 }
 
+const getCurrentAndNextPlot = (plot) => {
+  debugPlot(plot);
+  return {
+    currentSource: plot,
+    nextSource: plot.next ? StoryFlow(plot.next) : {}
+  }
+}
+
 // StoreContext
 export const StoreContext = createContext({});
 
-const begin = StoryFlow();
 const initialState = {
   stage: 0,
   allowControls: true,
   showDecisionBox: false,
   selectedOption: 0,
-  currentSource: begin,
-  nextSource: begin.next ? StoryFlow(begin.next) : {}
+  ...getCurrentAndNextPlot(StoryFlow())
 };
-debugPlot(begin);
+debugPlot(initialState.currentSource);
 
 // Reducer
 const reducer = (state, action) => {
@@ -63,17 +69,13 @@ const reducer = (state, action) => {
     }
 
     case 'NEXT_PLOT': {
-      const plot = state.nextSource;
-      debugPlot(plot);
-
       return {
         ...state,
         stage: 0,
         selectedOption: 0,
         allowControls: true,
         showDecisionBox: false,
-        currentSource: plot,
-        nextSource: plot.next ? StoryFlow(plot.next) : {}
+        ...getCurrentAndNextPlot(state.nextSource)
       }
     }
 
