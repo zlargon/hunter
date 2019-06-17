@@ -79,6 +79,10 @@ const reducer = (state, action) => {
       }
     }
 
+    case 'VIDEO_END': {
+      return initialState;
+    }
+
     default:
       throw new Error(`Unknown Action Type: ${type}`);
   }

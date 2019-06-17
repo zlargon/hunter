@@ -129,7 +129,7 @@ const App = () => {
           onTimeUpdate={videoHandler}
           onPlay={() => setVideoPlay(true)}
           onPause={() => setVideoPlay(false)}
-          onEnded={() => dispatch(['NEXT_PLOT'])}>
+          onEnded={() => dispatch(['VIDEO_END'])}>
         </video>
 
         {/* Debug Bar */}
