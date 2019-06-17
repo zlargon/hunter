@@ -5,8 +5,14 @@ const StoryFlow = {
   },
 
   "begin": {
-    start_time: "000:0:00.00",
-    end_time: "000:0:30.00",
+    start_time: "00:00:00.00",
+    end_time: "00:00:00.00",
+    next: "Part 1"
+  },
+
+  "Part 1": {
+    start_time: "00:03:45.00",
+    end_time: "00:04:07.55",
     "options": [
       "Let Sam Quite",
       "Let Sam Talk"
@@ -14,19 +20,18 @@ const StoryFlow = {
   },
 
   "Let Sam Quite": {
-    "start_time": "00:00:30.00",
-    "end_time": "00:00:50.00",
-    "next": "end"
+    "start_time": "00:04:07.56",
+    "end_time": "00:05:26.18",
+    "next": "continue"
   },
 
   "Let Sam Talk": {
-    "start_time": "00:01:00.00",
-    "end_time": "00:02:00.00",
-    "next": "end"
+    "start_time": "00:05:26.19",
+    "end_time": null
   },
 
-  "end": {
-    "start_time": "00:02:00.00",
+  "continue": {
+    "start_time": "00:05:34.51",
     "end_time": null
   }
 };
