@@ -136,6 +136,7 @@ const App = () => {
         <div className="top-bar">
           <div>{videoTime}</div>
           <div>{getTimeString(videoTime)}</div>
+          <div>{currentSource.name}</div>
         </div>
 
         {/* control bar */}
