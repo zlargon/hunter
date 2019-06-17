@@ -160,7 +160,7 @@ const App = () => {
                   visible={visible}
                   selectable={selectable}
                   onClick={() => dispatch(['DECISION_SELECTED', i])}>
-                  { opt.value }
+                  { opt }
                 </Option>
               );
             })

@@ -9,7 +9,7 @@ const initialState = {
   allowControls: true,
   showDecisionBox: false,
   selectedOption: 0,
-  currentSource: StoryFlow['001'],
+  currentSource: StoryFlow['00:00'],
   nextSource: {}
 };
 
@@ -43,7 +43,7 @@ const reducer = (state, action) => {
     case 'DECISION_PREPARE_END': {
       const optionIndex = state.selectedOption;
       const option = state.currentSource.options[optionIndex];
-      const nextSource = StoryFlow[option.next];
+      const nextSource = StoryFlow[option];
 
       return {
         ...state,
