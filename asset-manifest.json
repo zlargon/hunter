@@ -1,16 +1,15 @@
 {
   "files": {
-    "main.css": "/hunter/static/css/main.733a2f16.chunk.css",
-    "main.js": "/hunter/static/js/main.c20edb7f.chunk.js",
-    "main.js.map": "/hunter/static/js/main.c20edb7f.chunk.js.map",
+    "main.css": "/hunter/static/css/main.2e3bbb7f.chunk.css",
+    "main.js": "/hunter/static/js/main.ea6f6a66.chunk.js",
+    "main.js.map": "/hunter/static/js/main.ea6f6a66.chunk.js.map",
     "runtime~main.js": "/hunter/static/js/runtime~main.250b9548.js",
     "runtime~main.js.map": "/hunter/static/js/runtime~main.250b9548.js.map",
-    "static/js/2.429b015b.chunk.js": "/hunter/static/js/2.429b015b.chunk.js",
-    "static/js/2.429b015b.chunk.js.map": "/hunter/static/js/2.429b015b.chunk.js.map",
+    "static/js/2.91120321.chunk.js": "/hunter/static/js/2.91120321.chunk.js",
+    "static/js/2.91120321.chunk.js.map": "/hunter/static/js/2.91120321.chunk.js.map",
     "index.html": "/hunter/index.html",
-    "precache-manifest.28a0827dc6cb957fc9863ea3ee58c931.js": "/hunter/precache-manifest.28a0827dc6cb957fc9863ea3ee58c931.js",
+    "precache-manifest.e827b259b61562bca8d5e4bbd013db42.js": "/hunter/precache-manifest.e827b259b61562bca8d5e4bbd013db42.js",
     "service-worker.js": "/hunter/service-worker.js",
-    "static/css/main.733a2f16.chunk.css.map": "/hunter/static/css/main.733a2f16.chunk.css.map",
-    "static/media/video.mp4": "/hunter/static/media/video.366d4100.mp4"
+    "static/css/main.2e3bbb7f.chunk.css.map": "/hunter/static/css/main.2e3bbb7f.chunk.css.map"
   }
 }
