@@ -51,15 +51,17 @@ const reducer = (state, action) => {
       }
     }
 
-    case 'DECISION_END': {
+    case 'NEXT_PLOT': {
+      const plot = state.nextSource;
+
       return {
         ...state,
         stage: 0,
         selectedOption: 0,
         allowControls: true,
         showDecisionBox: false,
-        currentSource: state.nextSource,
-        nextSource: {}
+        currentSource: plot,
+        nextSource: plot.next ? StoryFlow(plot.next) : {}
       }
     }
 

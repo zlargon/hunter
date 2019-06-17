@@ -57,6 +57,21 @@ const App = () => {
       return;
     }
 
+    // Has Next
+    if (currentSource.next) {
+      // not yet
+      if (vid.currentTime < currentSource.end_time) {
+        return;
+      }
+
+      // don't jump if the timeline is very closed
+      if (Math.abs(vid.currentTime - nextSource.start_time) > 2) {
+        vid.currentTime = nextSource.start_time;
+      }
+
+      return dispatch(['NEXT_PLOT']);
+    }
+
     const startTime = currentSource.end_time - 15;
 
     // 0 ~ 3s
@@ -86,7 +101,7 @@ const App = () => {
         vid.currentTime = nextSource.start_time;
       }
 
-      return dispatch(['DECISION_END']);
+      return dispatch(['NEXT_PLOT']);
     }
   }
 
@@ -114,7 +129,7 @@ const App = () => {
           onTimeUpdate={videoHandler}
           onPlay={() => setVideoPlay(true)}
           onPause={() => setVideoPlay(false)}
-          onEnded={() => dispatch(['DECISION_END'])}>
+          onEnded={() => dispatch(['NEXT_PLOT'])}>
         </video>
 
         {/* Debug Bar */}
