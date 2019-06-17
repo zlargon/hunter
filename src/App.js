@@ -14,6 +14,7 @@ const App = () => {
   const videoContainerRef = React.createRef();
   const [isVideoPlay, setVideoPlay] = React.useState(false);
   const [isFullscreen, setFullscreen] = React.useState(document.fullscreen);
+  const [videoTime, setVideoTime] = React.useState('00.00');
   React.useEffect(() => {
     document.addEventListener('fullscreenchange', (e) => {
       setFullscreen(document.fullscreen);
@@ -50,7 +51,7 @@ const App = () => {
 
   // 4. Video Timeupdate Handler
   const videoHandler = ({ target: vid }) => {
-    console.log(vid.currentTime.toFixed(2));
+    setVideoTime(vid.currentTime.toFixed(2));
 
     if (currentSource.end_time === null) {
       return;
@@ -98,6 +99,13 @@ const App = () => {
   const decisionBoxClasses = ['decision-box'];
   if (state.showDecisionBox) decisionBoxClasses.push('show');
 
+  const getTimeString = (time) => {
+    const t = new Date(time * 1000);
+    const s = ('00' + t.getSeconds()).slice(-2);
+    const m = ('00' + t.getMinutes()).slice(-2);
+    return `${m}:${s}`;
+  }
+
   return (
     <div className="container" >
       <div ref={videoContainerRef} className="app-video-section">
@@ -108,6 +116,12 @@ const App = () => {
           onPause={() => setVideoPlay(false)}
           onEnded={() => dispatch(['DECISION_END'])}>
         </video>
+
+        {/* Debug Bar */}
+        <div className="top-bar">
+          <div>{videoTime}</div>
+          <div>{getTimeString(videoTime)}</div>
+        </div>
 
         {/* control bar */}
         <div className="control-section">
