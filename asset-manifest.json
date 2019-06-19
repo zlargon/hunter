@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/hunter/static/css/main.02676b5e.chunk.css",
-    "main.js": "/hunter/static/js/main.11b9d071.chunk.js",
-    "main.js.map": "/hunter/static/js/main.11b9d071.chunk.js.map",
+    "main.js": "/hunter/static/js/main.924caeae.chunk.js",
+    "main.js.map": "/hunter/static/js/main.924caeae.chunk.js.map",
     "runtime~main.js": "/hunter/static/js/runtime~main.250b9548.js",
     "runtime~main.js.map": "/hunter/static/js/runtime~main.250b9548.js.map",
     "static/js/2.91120321.chunk.js": "/hunter/static/js/2.91120321.chunk.js",
     "static/js/2.91120321.chunk.js.map": "/hunter/static/js/2.91120321.chunk.js.map",
     "index.html": "/hunter/index.html",
-    "precache-manifest.d2ca37f9dc868e4c500e406479852e77.js": "/hunter/precache-manifest.d2ca37f9dc868e4c500e406479852e77.js",
+    "precache-manifest.2860682b8310e4016563e792dff4bda5.js": "/hunter/precache-manifest.2860682b8310e4016563e792dff4bda5.js",
     "service-worker.js": "/hunter/service-worker.js",
     "static/css/main.02676b5e.chunk.css.map": "/hunter/static/css/main.02676b5e.chunk.css.map"
   }
