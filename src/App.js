@@ -2,7 +2,7 @@ import React from 'react';
 import { StoreContext } from './Store';
 import Option from './Option';
 import LoadingBar from './LoadingBar';
-import mov from './videos/video.mp4';
+// import mov from './videos/video.mp4';
 
 const App = () => {
   // 1. state and dispatch
@@ -125,7 +125,9 @@ const App = () => {
     <div className="container" >
       <div ref={videoContainerRef} className="app-video-section">
         {/* video */}
-        <video ref={videoRef} src={mov}
+        <video ref={videoRef}
+          src="https://github.com/zlargon/res/releases/download/hunter/all-1080p.mp4"
+          // src={mov}
           onTimeUpdate={videoHandler}
           onPlay={() => setVideoPlay(true)}
           onPause={() => setVideoPlay(false)}

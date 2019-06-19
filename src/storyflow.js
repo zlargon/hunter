@@ -7,32 +7,89 @@ const StoryFlow = {
   "begin": {
     start_time: "00:00:00.00",
     end_time: "00:00:00.00",
-    next: "Part 1"
+    next: "part 1"
   },
 
-  "Part 1": {
-    start_time: "00:03:45.00",
-    end_time: "00:04:07.55",
-    "options": [
-      "Let Sam Quite",
-      "Let Sam Talk"
+  "part 1": {
+    start_time: "00:00:00.00",
+    end_time: "00:04:18.44",
+    options: [
+      "let sam quite",
+      "let sam talk"
     ]
   },
 
-  "Let Sam Quite": {
-    "start_time": "00:04:07.56",
-    "end_time": "00:05:26.18",
-    "next": "continue"
+  "let sam quite": {
+    start_time: "00:04:45.42",
+    end_time: "00:06:11.41",
+    next: "part 2"
   },
 
-  "Let Sam Talk": {
-    "start_time": "00:05:26.19",
-    "end_time": null
+  "let sam talk": {
+    start_time: "00:06:27.10",
+    end_time: "00:06:41.36",
+    next: "part 2"
   },
 
-  "continue": {
-    "start_time": "00:05:34.51",
-    "end_time": null
+  "part 2": {
+    start_time: "00:06:41.36",
+    end_time: "00:09:20.54",
+    options: [
+      "put left cloth into sam's mouth",
+      "put right cloth into sam's mouth"
+    ]
+  },
+
+  "put left cloth into sam's mouth": {
+    start_time: "00:09:41.06",
+    end_time: "00:14:01.58",
+    next: "part 3"
+  },
+
+  "put right cloth into sam's mouth": {
+    start_time: "00:14:23.54",
+    end_time: "00:14:41.46",
+    next: "part 3"
+  },
+
+  "part 3": {
+    start_time: "00:14:41.46",
+    end_time: "00:15:40.41",
+    options: [
+      "help ashley",
+      "help jake",
+      "help corey",
+      "help sam"
+    ]
+  },
+
+  "help ashley": {
+    start_time: "00:16:09.53",
+    end_time: "00:21:56.17",
+    next: "ending"
+  },
+
+  "help jake": {
+    start_time: "00:22:20.00",
+    end_time: "00:31:54.47",
+    next: "ending"
+  },
+
+  "help corey": {
+    start_time: "00:32:04.31",
+    end_time: "00:36:32.07",
+    next: "ending"
+  },
+
+  "help sam": {
+    start_time: "00:36:35.59",
+    end_time: "00:41:02.05",
+    next: "ending"
+  },
+
+  "ending": {
+    start_time: "00:41:02.05",
+    end_time: null
   }
 };
 
