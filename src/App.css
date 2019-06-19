@@ -64,18 +64,23 @@ body {
   transform: translateY(100%);  /* hide */
   transition: all 0.2s;
   background-color: black;
+  color: white;
 
   /* flex */
   display: flex;
   align-items: center;
-  padding: 0 20px;
+  justify-content: space-between;
 }
 .control-section .controls > div {
-  color: white;
-  cursor: pointer;
+  margin: 0 15px;
+  display: flex;
+}
+.control-section .controls > div > div {
   padding: 5px 8px;
   border: 1px solid white;
+  cursor: pointer;
 }
+
 .control-section:hover .controls.allow {
   transform: translateY(0);   /* show */
 }

@@ -2,7 +2,6 @@ import React from 'react';
 import { StoreContext } from './Store';
 import Option from './Option';
 import LoadingBar from './LoadingBar';
-// import mov from './videos/video.mp4';
 
 const App = () => {
   // 1. state and dispatch
@@ -10,6 +9,7 @@ const App = () => {
   const { stage, selectedOption, currentSource, nextSource } = state;
 
   // 2. video state and refs
+  const videoSource = 'https://github.com/zlargon/res/releases/download/hunter/all-1080p.mp4';
   const videoRef = React.createRef();
   const videoContainerRef = React.createRef();
   const [isVideoPlay, setVideoPlay] = React.useState(false);
@@ -125,9 +125,7 @@ const App = () => {
     <div className="container" >
       <div ref={videoContainerRef} className="app-video-section">
         {/* video */}
-        <video ref={videoRef}
-          src="https://github.com/zlargon/res/releases/download/hunter/all-1080p.mp4"
-          // src={mov}
+        <video ref={videoRef} src={videoSource}
           onTimeUpdate={videoHandler}
           onPlay={() => setVideoPlay(true)}
           onPause={() => setVideoPlay(false)}
@@ -144,23 +142,32 @@ const App = () => {
         {/* control bar */}
         <div className="control-section">
           <div className={controlsClasses.join(' ')}>
-            <div onClick={togglePlayPause}>
-              { isVideoPlay ?
-                <i className="fas fa-pause"></i> :
-                <i className="fas fa-play"></i>
-              }
+            {/* left */}
+            <div>
+              <div onClick={togglePlayPause}>
+                { isVideoPlay ?
+                  <i className="fas fa-pause"></i> :
+                  <i className="fas fa-play"></i>
+                }
+              </div>
+              <div onClick={() => foward(-10)}>
+                <i className="fas fa-undo-alt"></i>
+              </div>
+              <div onClick={() => foward(10)}>
+                <i className="fas fa-redo-alt"></i>
+              </div>
             </div>
-            <div onClick={() => foward(-10)}>
-              <i className="fas fa-undo-alt"></i>
-            </div>
-            <div onClick={() => foward(10)}>
-              <i className="fas fa-redo-alt"></i>
-            </div>
-            <div onClick={fullscreenToggle}>
-              { isFullscreen ?
-                <i className="fas fa-compress"></i> :
-                <i className="fas fa-expand"></i>
-              }
+
+            <pre>{videoSource.split('/').pop()}</pre>
+
+            {/* right */}
+            <div>
+              <div onClick={fullscreenToggle}>
+                { isFullscreen ?
+                  <i className="fas fa-compress"></i> :
+                  <i className="fas fa-expand"></i>
+                }
+              </div>
             </div>
           </div>
         </div>
