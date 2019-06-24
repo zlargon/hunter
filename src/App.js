@@ -15,9 +15,13 @@ const App = () => {
   const [isFullscreen, setFullscreen] = React.useState(document.fullscreen);
   const [videoTime, setVideoTime] = React.useState('0.00');
   React.useEffect(() => {
-    document.addEventListener('fullscreenchange', (e) => {
+    const handler = () => {
       setFullscreen(document.fullscreen);
-    });
+    }
+    document.addEventListener('fullscreenchange', handler);
+    return () => {
+      document.removeEventListener('fullscreenchange', handler);
+    }
   }, []);
 
   // 3. video functions
@@ -32,7 +36,7 @@ const App = () => {
   }
 
   // 3-2. forward / backward
-  const foward = (sec) => {
+  const foward = React.useCallback((sec) => {
     const vid = videoRef.current;
     const { start_time, end_time, select_time } = currentSource;
 
@@ -51,7 +55,7 @@ const App = () => {
 
     // 3. normal
     vid.currentTime += sec;
-  }
+  }, [currentSource]);
 
   // 3-3. fullscreen toggle
   const fullscreenToggle = () => {
@@ -67,7 +71,7 @@ const App = () => {
   // 4. keydown handler
   React.useEffect(() => {
     const handler = ({ keyCode }) => {
-      if (state.stage !== 0) {
+      if (stage !== 0) {
         return;
       }
 
@@ -81,7 +85,7 @@ const App = () => {
     return () => {
       document.removeEventListener('keydown', handler);
     };
-  }, [state]);
+  }, [stage, foward]);
 
   // 5. Video Timeupdate Handler
   const videoHandler = ({ target: vid }) => {

@@ -51,7 +51,6 @@ const initialState = {
   selectedOption: 0,
   ...getCurrentAndNextPlot(getStory())
 };
-debugPlot(initialState.currentSource);
 
 // Reducer
 const reducer = (state, action) => {
