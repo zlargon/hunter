@@ -34,6 +34,22 @@ const App = () => {
   // 3-2. forward / backward
   const foward = (sec) => {
     const vid = videoRef.current;
+    const { start_time, end_time, select_time } = currentSource;
+
+    // 1. forward (not later than perpare time)
+    const prepare_time = end_time - select_time;
+    if (sec > 0 && vid.currentTime + sec > prepare_time) {
+      vid.currentTime = prepare_time;
+      return;
+    }
+
+    // 2. backward (not early than start time)
+    if (sec < 0 && vid.currentTime + sec < start_time) {
+      vid.currentTime = start_time;
+      return;
+    }
+
+    // 3. normal
     vid.currentTime += sec;
   }
 
@@ -51,6 +67,11 @@ const App = () => {
   // 4. keydown handler
   React.useEffect(() => {
     const handler = ({ keyCode }) => {
+      if (state.stage !== 0) {
+        return;
+      }
+
+      // the function only enable at stage 0
       if (keyCode === 32) togglePlayPause();  // space
       if (keyCode === 37) foward(-10);        // left arrow
       if (keyCode === 39) foward(10);         // right arrow
@@ -60,7 +81,7 @@ const App = () => {
     return () => {
       document.removeEventListener('keydown', handler);
     };
-  }, []);
+  }, [state]);
 
   // 5. Video Timeupdate Handler
   const videoHandler = ({ target: vid }) => {

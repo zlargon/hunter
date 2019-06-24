@@ -17,7 +17,8 @@ const getStory = (name = 'begin') => {
     name,
     ...plot,
     start_time: toSecond(plot.start_time),
-    end_time: toSecond(plot.end_time)
+    end_time: toSecond(plot.end_time),
+    select_time: plot.next ? 0 : plot.select_time
   }
 };
 
@@ -26,6 +27,7 @@ const debugPlot = (plot) => {
   console.log('start_time:', plot.start_time);
   console.log('end_time:', plot.end_time);
   console.log('select_time:', plot.select_time);
+  console.log('prepare_time:', plot.end_time - plot.select_time);
   console.log('next:', plot.next);
   console.log('options:', plot.options);
   console.groupEnd();
