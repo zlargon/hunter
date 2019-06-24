@@ -171,7 +171,12 @@ const App = () => {
 
         {/* decision box */}
         <div className={decisionBoxClasses.join(' ')}>
-          { (stage === 2 || stage === 3) && <LoadingBar color={ stage === 3 ? 'grey' : 'white' }/> }
+          { (stage === 2 || stage === 3) &&
+            <LoadingBar
+              duration={currentSource.select_time * 5 / 7 }
+              color={ stage === 3 ? 'grey' : 'white' }
+            />
+          }
           {
             currentSource.options && currentSource.options.map((opt, i) => {
               const visible    = (stage === 2 || (stage >= 3 && i === selectedOption)) ? 1 : 0;
