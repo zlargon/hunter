@@ -1,5 +1,25 @@
 import React, { createContext, useReducer } from 'react';
-import StoryFlow from './storyflow.js';
+import storyflow from './storyflow.json';
+
+const toSecond = (timeStr) => {
+  try {
+    const t = timeStr.split(':').map(parseFloat);
+    return t[0] * 24 + t[1] * 60 + t[2];
+  } catch (e) {
+    return null;
+  }
+}
+
+const getStory = (name = 'begin') => {
+  const plot = storyflow[name];
+  return {
+    ...storyflow['default'],
+    name,
+    ...plot,
+    start_time: toSecond(plot.start_time),
+    end_time: toSecond(plot.end_time)
+  }
+};
 
 const debugPlot = (plot) => {
   console.group(plot.name);
@@ -15,7 +35,7 @@ const getCurrentAndNextPlot = (plot) => {
   debugPlot(plot);
   return {
     currentSource: plot,
-    nextSource: plot.next ? StoryFlow(plot.next) : {}
+    nextSource: plot.next ? getStory(plot.next) : {}
   }
 }
 
@@ -27,7 +47,7 @@ const initialState = {
   allowControls: true,
   showDecisionBox: false,
   selectedOption: 0,
-  ...getCurrentAndNextPlot(StoryFlow())
+  ...getCurrentAndNextPlot(getStory())
 };
 debugPlot(initialState.currentSource);
 
@@ -65,7 +85,7 @@ const reducer = (state, action) => {
       return {
         ...state,
         stage: 4,
-        nextSource: StoryFlow(option)
+        nextSource: getStory(option)
       }
     }
 
