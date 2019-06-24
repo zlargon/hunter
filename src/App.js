@@ -154,9 +154,9 @@ const App = () => {
   }
 
   return (
-    <div className="container" >
-      <div ref={videoContainerRef} className="app-video-section">
-        {/* video */}
+    <div className="app" >
+      <main ref={videoContainerRef}>
+        {/* 1. video */}
         <video ref={videoRef} src={currentSource.video}
           onTimeUpdate={videoHandler}
           onPlay={() => setVideoPlay(true)}
@@ -164,17 +164,17 @@ const App = () => {
           onEnded={() => dispatch(['VIDEO_END'])}>
         </video>
 
-        {/* Debug Bar */}
-        <div className="top-bar">
+        {/* 2. debug bar */}
+        <div className="debug-bar">
           <div>{videoTime}</div>
           <div>{getTimeString(videoTime)}</div>
           <div>{currentSource.name}</div>
         </div>
 
-        {/* control bar */}
+        {/* 3. control section */}
         <div className="control-section">
           <div className={controlsClasses.join(' ')}>
-            {/* left */}
+            {/* 3-1-1. left */}
             <div>
               <div onClick={togglePlayPause}>
                 { isVideoPlay ?
@@ -190,9 +190,10 @@ const App = () => {
               </div>
             </div>
 
+            {/* 3-1-2. middle */}
             <pre>{currentSource.video.split('/').pop()}</pre>
 
-            {/* right */}
+            {/* 3-1-3. right */}
             <div>
               <div onClick={fullscreenToggle}>
                 { isFullscreen ?
@@ -204,7 +205,7 @@ const App = () => {
           </div>
         </div>
 
-        {/* decision box */}
+        {/* 4. decision box */}
         <div className={decisionBoxClasses.join(' ')}>
           { (stage === 2 || stage === 3) &&
             <LoadingBar
@@ -228,7 +229,7 @@ const App = () => {
             })
           }
         </div>
-      </div>
+      </main>
     </div>
   );
 }
