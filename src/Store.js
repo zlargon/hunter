@@ -5,6 +5,7 @@ const debugPlot = (plot) => {
   console.group(plot.name);
   console.log('start_time:', plot.start_time);
   console.log('end_time:', plot.end_time);
+  console.log('select_time:', plot.select_time);
   console.log('next:', plot.next);
   console.log('options:', plot.options);
   console.groupEnd();

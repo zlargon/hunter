@@ -1,7 +1,6 @@
 const StoryFlow = {
   "default": {
-    "source": "video.mp4",
-    "description": ""
+    video: "https://github.com/zlargon/res/releases/download/hunter/hunter_0623.mp4"
   },
 
   "begin": {
@@ -12,7 +11,8 @@ const StoryFlow = {
 
   "part 1": {
     start_time: "00:00:00.00",
-    end_time: "00:04:18.44",
+    end_time: "00:04:31.55",
+    select_time: 10,
     options: [
       "let sam quite",
       "let sam talk"
@@ -20,41 +20,43 @@ const StoryFlow = {
   },
 
   "let sam quite": {
-    start_time: "00:04:45.42",
-    end_time: "00:06:11.41",
+    start_time: "00:04:55.56",
+    end_time: "00:06:30.10",
     next: "part 2"
   },
 
   "let sam talk": {
-    start_time: "00:06:27.10",
-    end_time: "00:06:41.36",
+    start_time: "00:06:40.43",
+    end_time: "00:06:56.41",
     next: "part 2"
   },
 
   "part 2": {
-    start_time: "00:06:41.36",
-    end_time: "00:09:20.54",
+    start_time: "00:06:56.42",
+    end_time: "00:09:30.37",
+    select_time: 13,
     options: [
-      "put left cloth into sam's mouth",
-      "put right cloth into sam's mouth"
+      "put towel into sam's mouth",
+      "put cloth into sam's mouth"
     ]
   },
 
-  "put left cloth into sam's mouth": {
-    start_time: "00:09:41.06",
-    end_time: "00:14:01.58",
+  "put towel into sam's mouth": {
+    start_time: "00:09:47.53",
+    end_time: "00:13:55.21",
     next: "part 3"
   },
 
-  "put right cloth into sam's mouth": {
-    start_time: "00:14:23.54",
-    end_time: "00:14:41.46",
+  "put cloth into sam's mouth": {
+    start_time: "00:14:16.40",
+    end_time: "00:14:34.31",
     next: "part 3"
   },
 
   "part 3": {
-    start_time: "00:14:41.46",
-    end_time: "00:15:40.41",
+    start_time: "00:14:34.32",
+    end_time: "00:15:38.25",
+    select_time: 16,
     options: [
       "help ashley",
       "help jake",
@@ -64,31 +66,31 @@ const StoryFlow = {
   },
 
   "help ashley": {
-    start_time: "00:16:09.53",
-    end_time: "00:21:56.17",
+    start_time: "00:15:56.28",
+    end_time: "00:22:39.14",
     next: "ending"
   },
 
   "help jake": {
-    start_time: "00:22:20.00",
-    end_time: "00:31:54.47",
+    start_time: "00:22:49.42",
+    end_time: "00:32:42.20",
     next: "ending"
   },
 
   "help corey": {
-    start_time: "00:32:04.31",
-    end_time: "00:36:32.07",
+    start_time: "00:32:46.36",
+    end_time: "00:38:08.17",
     next: "ending"
   },
 
   "help sam": {
-    start_time: "00:36:35.59",
-    end_time: "00:41:02.05",
+    start_time: "00:38:41.33",
+    end_time: "00:44:12.10",
     next: "ending"
   },
 
   "ending": {
-    start_time: "00:41:02.05",
+    start_time: "00:44:12.10",
     end_time: null
   }
 };
@@ -105,6 +107,7 @@ const toSecond = (timeStr) => {
 export default (name = 'begin') => {
   const plot = StoryFlow[name];
   return {
+    ...StoryFlow['default'],
     name,
     ...plot,
     start_time: toSecond(plot.start_time),

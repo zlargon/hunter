@@ -9,7 +9,6 @@ const App = () => {
   const { stage, selectedOption, currentSource, nextSource } = state;
 
   // 2. video state and refs
-  const videoSource = 'https://github.com/zlargon/res/releases/download/hunter/all-1080p.mp4';
   const videoRef = React.createRef();
   const videoContainerRef = React.createRef();
   const [isVideoPlay, setVideoPlay] = React.useState(false);
@@ -125,7 +124,7 @@ const App = () => {
     <div className="container" >
       <div ref={videoContainerRef} className="app-video-section">
         {/* video */}
-        <video ref={videoRef} src={videoSource}
+        <video ref={videoRef} src={currentSource.video}
           onTimeUpdate={videoHandler}
           onPlay={() => setVideoPlay(true)}
           onPause={() => setVideoPlay(false)}
@@ -158,7 +157,7 @@ const App = () => {
               </div>
             </div>
 
-            <pre>{videoSource.split('/').pop()}</pre>
+            <pre>{currentSource.video.split('/').pop()}</pre>
 
             {/* right */}
             <div>
