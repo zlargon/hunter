@@ -96,6 +96,7 @@ const App = () => {
 
       // end of video
       if (vid.currentTime >= currentSource.end_time) {
+        // force stop the video
         vid.pause();
         return dispatch(['VIDEO_END']);
       }
@@ -126,6 +127,9 @@ const App = () => {
 
     // after 0
     if (stage === 0 && vid.currentTime >= startTime) {
+      // force play the video
+      vid.play();
+
       return dispatch(['DECISION_PREPARE']);
     }
 
