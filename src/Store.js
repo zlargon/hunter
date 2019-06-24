@@ -23,7 +23,7 @@ const getStory = (name = 'begin') => {
 };
 
 const debugPlot = (plot) => {
-  console.group(plot.name);
+  console.group('🎬', plot.name);
   console.log('start_time:', plot.start_time);
   console.log('end_time:', plot.end_time);
   console.log('select_time:', plot.select_time);
@@ -56,7 +56,7 @@ debugPlot(initialState.currentSource);
 // Reducer
 const reducer = (state, action) => {
   const [type, payload] = action;
-  console.log(type);
+  console.log(`%c 🚀 ${type} `, 'background: black; color: yellow; font-weight : bold');
 
   switch (type) {
     case 'DECISION_PREPARE':

@@ -5,7 +5,7 @@ const LoadingBar = ({ duration = 10, color = 'white' }) => {
   const [progress, setProgress] = React.useState(0);
 
   React.useEffect(() => {
-    const interval = 50;
+    const interval = 20;
     let passtime = 0;
     const id = setInterval(() => {
       passtime += interval;
