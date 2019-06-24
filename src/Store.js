@@ -11,15 +11,16 @@ const toSecond = (timeStr) => {
 }
 
 const getStory = (name = 'begin') => {
-  const plot = storyflow[name];
-  return {
-    ...storyflow['default'],
+  const plot = {
     name,
-    ...plot,
-    start_time: toSecond(plot.start_time),
-    end_time: toSecond(plot.end_time),
-    select_time: plot.next ? 0 : plot.select_time
-  }
+    ...storyflow['default'],
+    ...storyflow[name]
+  };
+
+  plot.start_time  = toSecond(plot.start_time);
+  plot.end_time    = toSecond(plot.end_time);
+  plot.select_time = plot.next.length > 1 ? plot.select_time : 0;
+  return plot;
 };
 
 const debugPlot = (plot) => {
@@ -29,7 +30,6 @@ const debugPlot = (plot) => {
   console.log('select_time:', plot.select_time);
   console.log('prepare_time:', plot.end_time - plot.select_time);
   console.log('next:', plot.next);
-  console.log('options:', plot.options);
   console.groupEnd();
 }
 
@@ -37,7 +37,7 @@ const getCurrentAndNextPlot = (plot) => {
   debugPlot(plot);
   return {
     currentSource: plot,
-    nextSource: plot.next ? getStory(plot.next) : {}
+    nextSource: plot.next.length > 0 ? getStory(plot.next[0]) : null
   }
 }
 
@@ -81,7 +81,7 @@ const reducer = (state, action) => {
 
     case 'DECISION_PREPARE_END': {
       const optionIndex = state.selectedOption;
-      const option = state.currentSource.options[optionIndex];
+      const option = state.currentSource.next[optionIndex];
 
       return {
         ...state,

@@ -91,12 +91,20 @@ const App = () => {
   const videoHandler = ({ target: vid }) => {
     setVideoTime(vid.currentTime.toFixed(2));
 
-    if (currentSource.end_time === null) {
+    // 5-1. not next (ending plot)
+    if (currentSource.next.length === 0 || currentSource.end_time === null) {
+
+      // end of video
+      if (vid.currentTime >= currentSource.end_time) {
+        vid.pause();
+        return dispatch(['VIDEO_END']);
+      }
+
       return;
     }
 
-    // Has Next
-    if (currentSource.next) {
+    // 5-2. only one next
+    if (currentSource.next.length === 1) {
       // not yet
       if (vid.currentTime < currentSource.end_time) {
         return;
@@ -110,6 +118,7 @@ const App = () => {
       return dispatch(['NEXT_PLOT']);
     }
 
+    // 5-3. multiple next
     const { end_time, select_time } = currentSource;
     const startTime = end_time - select_time;
 
@@ -218,7 +227,7 @@ const App = () => {
             />
           }
           {
-            currentSource.options && currentSource.options.map((opt, i) => {
+            currentSource.next.length > 1 && currentSource.next.map((opt, i) => {
               const visible    = (stage === 2 || (stage >= 3 && i === selectedOption)) ? 1 : 0;
               const selectable = (stage === 3 || stage === 4) ? 0 : 1;
 

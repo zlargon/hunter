@@ -1,20 +1,25 @@
 {
   "default": {
     "video": "https://github.com/zlargon/res/releases/download/hunter/hunter_0623.mp4",
-    "select_time": 15
+    "start_time": null,
+    "end_time": null,
+    "select_time": 15,
+    "next": []
   },
 
   "begin": {
     "start_time": "00:00:00.00",
     "end_time": "00:00:00.00",
-    "next": "part 1"
+    "next": [
+      "part 1"
+    ]
   },
 
   "part 1": {
     "start_time": "00:00:00.00",
     "end_time": "00:04:31.55",
     "select_time": 10,
-    "options": [
+    "next": [
       "let sam quite",
       "let sam talk"
     ]
@@ -23,20 +28,24 @@
   "let sam quite": {
     "start_time": "00:04:55.56",
     "end_time": "00:06:30.10",
-    "next": "part 2"
+    "next": [
+      "part 2"
+    ]
   },
 
   "let sam talk": {
     "start_time": "00:06:40.43",
     "end_time": "00:06:56.41",
-    "next": "part 2"
+    "next": [
+      "part 2"
+    ]
   },
 
   "part 2": {
     "start_time": "00:06:56.42",
     "end_time": "00:09:30.37",
     "select_time": 13,
-    "options": [
+    "next": [
       "put towel into sam's mouth",
       "put cloth into sam's mouth"
     ]
@@ -45,20 +54,24 @@
   "put towel into sam's mouth": {
     "start_time": "00:09:47.53",
     "end_time": "00:13:55.21",
-    "next": "part 3"
+    "next": [
+      "part 3"
+    ]
   },
 
   "put cloth into sam's mouth": {
     "start_time": "00:14:16.40",
     "end_time": "00:14:34.31",
-    "next": "part 3"
+    "next": [
+      "part 3"
+    ]
   },
 
   "part 3": {
     "start_time": "00:14:34.32",
     "end_time": "00:15:38.25",
     "select_time": 16,
-    "options": [
+    "next": [
       "help ashley",
       "help jake",
       "help corey",
@@ -68,30 +81,21 @@
 
   "help ashley": {
     "start_time": "00:15:56.28",
-    "end_time": "00:22:39.14",
-    "next": "ending"
+    "end_time": "00:22:39.14"
   },
 
   "help jake": {
     "start_time": "00:22:49.42",
-    "end_time": "00:32:42.20",
-    "next": "ending"
+    "end_time": "00:32:42.20"
   },
 
   "help corey": {
     "start_time": "00:32:46.36",
-    "end_time": "00:38:08.17",
-    "next": "ending"
+    "end_time": "00:38:08.17"
   },
 
   "help sam": {
     "start_time": "00:38:41.33",
-    "end_time": "00:44:12.10",
-    "next": "ending"
-  },
-
-  "ending": {
-    "start_time": "00:44:12.10",
-    "end_time": null
+    "end_time": "00:44:12.10"
   }
 }
