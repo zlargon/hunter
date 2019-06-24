@@ -1,6 +1,7 @@
 {
   "default": {
-    "video": "https://github.com/zlargon/res/releases/download/hunter/hunter_0623.mp4"
+    "video": "https://github.com/zlargon/res/releases/download/hunter/hunter_0623.mp4",
+    "select_time": 15
   },
 
   "begin": {

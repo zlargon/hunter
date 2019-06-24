@@ -71,30 +71,28 @@ const App = () => {
       return dispatch(['NEXT_PLOT']);
     }
 
-    const startTime = currentSource.end_time - 15;
+    const { end_time, select_time } = currentSource;
+    const startTime = end_time - select_time;
 
-    // 0 ~ 3s
+    // PREPARE : START : PREPARE_END = 1 : 5 : 1
+
+    // after 0
     if (stage === 0 && vid.currentTime >= startTime) {
       return dispatch(['DECISION_PREPARE']);
     }
 
-    // 3 ~ 13s
-    if (stage === 1 && vid.currentTime >= startTime + 3) {
+    // after 1
+    if (stage === 1 && vid.currentTime >= startTime + (select_time * 1 / 7)) {
       return dispatch(['DECISION_START']);
     }
 
-    // 3 ~ 8s (TODO: move to click event)
-    // if (stage === 2 && vid.currentTime >= startTime + 8) {
-    //   return dispatch(['DECISION_SELECTED']);
-    // }
-
-    // 13 ~ 15s
-    if ((stage === 2 || stage === 3) && vid.currentTime >= startTime + 13) {
+    // after 6
+    if ((stage === 2 || stage === 3) && vid.currentTime >= startTime + (select_time * 6 / 7)) {
       return dispatch(['DECISION_PREPARE_END']);
     }
 
-    // after 15s
-    if (stage === 4 && vid.currentTime >= startTime + 15) {
+    // after 7
+    if (stage === 4 && vid.currentTime >= end_time) {
       // don't jump if the timeline is very closed
       if (Math.abs(vid.currentTime - nextSource.start_time) > 2) {
         vid.currentTime = nextSource.start_time;
