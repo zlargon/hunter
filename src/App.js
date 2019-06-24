@@ -9,11 +9,11 @@ const App = () => {
   const { stage, selectedOption, currentSource, nextSource } = state;
 
   // 2. video state and refs
-  const videoRef = React.createRef();
-  const videoContainerRef = React.createRef();
+  const videoRef = React.useRef(null);
+  const videoContainerRef = React.useRef(null);
   const [isVideoPlay, setVideoPlay] = React.useState(false);
   const [isFullscreen, setFullscreen] = React.useState(document.fullscreen);
-  const [videoTime, setVideoTime] = React.useState('00.00');
+  const [videoTime, setVideoTime] = React.useState('0.00');
   React.useEffect(() => {
     document.addEventListener('fullscreenchange', (e) => {
       setFullscreen(document.fullscreen);
@@ -48,7 +48,21 @@ const App = () => {
     }
   }
 
-  // 4. Video Timeupdate Handler
+  // 4. keydown handler
+  React.useEffect(() => {
+    const handler = ({ keyCode }) => {
+      if (keyCode === 32) togglePlayPause();  // space
+      if (keyCode === 37) foward(-10);        // left arrow
+      if (keyCode === 39) foward(10);         // right arrow
+    }
+
+    document.addEventListener('keydown', handler);
+    return () => {
+      document.removeEventListener('keydown', handler);
+    };
+  }, []);
+
+  // 5. Video Timeupdate Handler
   const videoHandler = ({ target: vid }) => {
     setVideoTime(vid.currentTime.toFixed(2));
 
