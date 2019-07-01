@@ -1,6 +1,6 @@
 {
   "default": {
-    "video": "https://github.com/zlargon/res/releases/download/hunter/hunter_0623.mp4",
+    "video": "https://github.com/zlargon/res/releases/download/hunter/hunter_final_no_subtitles.mp4",
     "start_time": null,
     "end_time": null,
     "select_time": 15,
@@ -17,8 +17,8 @@
 
   "part 1": {
     "start_time": "00:00:00.00",
-    "end_time": "00:04:31.55",
-    "select_time": 10,
+    "end_time": "00:04:41.32",
+    "select_time": 9,
     "next": [
       "let sam quite",
       "let sam talk"
@@ -26,25 +26,25 @@
   },
 
   "let sam quite": {
-    "start_time": "00:04:55.56",
-    "end_time": "00:06:30.10",
+    "start_time": "00:05:05.12",
+    "end_time": "00:06:39.24",
     "next": [
       "part 2"
     ]
   },
 
   "let sam talk": {
-    "start_time": "00:06:40.43",
-    "end_time": "00:06:56.41",
+    "start_time": "00:06:50.20",
+    "end_time": "00:07:06.22",
     "next": [
       "part 2"
     ]
   },
 
   "part 2": {
-    "start_time": "00:06:56.42",
-    "end_time": "00:09:30.37",
-    "select_time": 13,
+    "start_time": "00:07:06.23",
+    "end_time": "00:09:40.23",
+    "select_time": 17,
     "next": [
       "put towel into sam's mouth",
       "put cloth into sam's mouth"
@@ -52,25 +52,25 @@
   },
 
   "put towel into sam's mouth": {
-    "start_time": "00:09:47.53",
-    "end_time": "00:13:55.21",
+    "start_time": "00:09:57.39",
+    "end_time": "00:13:55.29",
     "next": [
       "part 3"
     ]
   },
 
   "put cloth into sam's mouth": {
-    "start_time": "00:14:16.40",
-    "end_time": "00:14:34.31",
+    "start_time": "00:14:25.51",
+    "end_time": "00:14:43.42",
     "next": [
       "part 3"
     ]
   },
 
   "part 3": {
-    "start_time": "00:14:34.32",
-    "end_time": "00:15:38.25",
-    "select_time": 16,
+    "start_time": "00:14:43.43",
+    "end_time": "00:15:39.20",
+    "select_time": 15,
     "next": [
       "help ashley",
       "help jake",
@@ -80,22 +80,22 @@
   },
 
   "help ashley": {
-    "start_time": "00:15:56.28",
-    "end_time": "00:22:39.14"
+    "start_time": "00:15:52.45",
+    "end_time": "00:21:05.17"
   },
 
   "help jake": {
-    "start_time": "00:22:49.42",
-    "end_time": "00:32:42.20"
+    "start_time": "00:21:09.04",
+    "end_time": "00:31:19.25"
   },
 
   "help corey": {
-    "start_time": "00:32:46.36",
-    "end_time": "00:38:08.17"
+    "start_time": "00:31:20.09",
+    "end_time": "00:36:56.00"
   },
 
   "help sam": {
-    "start_time": "00:38:41.33",
-    "end_time": "00:44:12.10"
+    "start_time": "00:37:01.15",
+    "end_time": "00:41:16.48"
   }
 }
