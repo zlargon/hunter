@@ -189,11 +189,13 @@ const App = () => {
         </video>
 
         {/* 2. debug bar */}
-        <div className="debug-bar">
-          <div>{videoTime}</div>
-          <div>{getTimeString(videoTime)}</div>
-          <div>{currentSource.name}</div>
-        </div>
+        { process.env.NODE_ENV === 'development' &&
+          <div className="debug-bar">
+            <div>{videoTime}</div>
+            <div>{getTimeString(videoTime)}</div>
+            <div>{currentSource.name}</div>
+          </div>
+        }
 
         {/* 3. control section */}
         <div className="control-section">
@@ -215,7 +217,10 @@ const App = () => {
             </div>
 
             {/* 3-1-2. middle */}
-            <pre>{currentSource.video.split('/').pop()}</pre>
+            <pre>{
+              process.env.NODE_ENV === 'development' &&
+              currentSource.video.split('/').pop()
+            }</pre>
 
             {/* 3-1-3. right */}
             <div>
