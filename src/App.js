@@ -170,6 +170,12 @@ const App = () => {
     return `${m}:${s}`;
   }
 
+  // TODO: debug
+  const onVideoError = (e) => {
+    console.log('onerror');
+    console.log(e);
+  }
+
   return (
     <div className="app" >
       <main ref={videoContainerRef}>
@@ -178,6 +184,7 @@ const App = () => {
           onTimeUpdate={videoHandler}
           onPlay={() => setVideoPlay(true)}
           onPause={() => setVideoPlay(false)}
+          onError={onVideoError}
           onEnded={() => dispatch(['VIDEO_END'])}>
         </video>
 
