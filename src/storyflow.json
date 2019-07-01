@@ -1,6 +1,6 @@
 {
   "default": {
-    "video": "https://github.com/zlargon/res/releases/download/hunter/hunter_final_no_subtitles.mp4",
+    "video": "https://github.com/zlargon/res/releases/download/hunter/hunter_0630_subtitle.mp4",
     "start_time": null,
     "end_time": null,
     "select_time": 15,
@@ -68,7 +68,7 @@
   },
 
   "part 3": {
-    "start_time": "00:14:43.43",
+    "start_time": "00:14:43.80",
     "end_time": "00:15:39.20",
     "select_time": 15,
     "next": [
