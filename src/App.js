@@ -181,6 +181,7 @@ const App = () => {
       <main ref={videoContainerRef}>
         {/* 1. video */}
         <video ref={videoRef} src={currentSource.video}
+          autoPlay={process.env.NODE_ENV !== 'development'}
           onTimeUpdate={videoHandler}
           onPlay={() => setVideoPlay(true)}
           onPause={() => setVideoPlay(false)}
