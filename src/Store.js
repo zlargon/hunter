@@ -25,6 +25,7 @@ const getStory = (name = 'begin') => {
 
 const debugPlot = (plot) => {
   console.group('🎬', plot.name);
+  console.log('video_name:', plot.video.split('/').pop());
   console.log('start_time:', plot.start_time);
   console.log('end_time:', plot.end_time);
   console.log('select_time:', plot.select_time);
